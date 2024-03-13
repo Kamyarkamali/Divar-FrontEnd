@@ -15,4 +15,8 @@ interface IcheckOtp {
   setStep: Dispatch<SetStateAction<number>>;
 }
 
-export type { IsentOtp, IcheckOtp };
+interface Ichildren {
+  children: JSX.Element;
+}
+
+export type { IsentOtp, IcheckOtp, Ichildren };
