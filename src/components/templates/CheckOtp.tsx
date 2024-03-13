@@ -1,4 +1,11 @@
 import React, { FC, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
+
+// fetch data in react query
+import { useQuery } from "@tanstack/react-query";
+
+// get toke is cookie
+import { cookie } from "../../utils/cookies";
 
 // tyes in folder typescript
 import { IcheckOtp } from "../../types/interface";
@@ -11,15 +18,16 @@ import { MESSEGESENDOTP } from "../../types/enumsPublic";
 
 //notif || alert
 import toast, { Toaster } from "react-hot-toast";
-import { cookie } from "../../utils/cookies";
 
-const CheckOtp: FC<IcheckOtp> = ({
-  code,
-  setCode,
-  mobile,
-  setMobile,
-  setStep,
-}) => {
+// function get data at react query
+import { getProfile } from "../../services/userReactQuerys";
+
+const CheckOtp: FC<IcheckOtp> = ({ code, setCode, mobile, setStep }) => {
+  const { refetch } = useQuery(["Profile"], getProfile);
+
+  // redirect uset to HomePage
+  const navigate = useNavigate();
+
   // submit handeler form
   const submitHandeler = async (e: FormEvent<HTMLElement>) => {
     e.preventDefault();
@@ -27,10 +35,12 @@ const CheckOtp: FC<IcheckOtp> = ({
     // validation code sms
     if (code.length !== 5) return;
 
-    const { response, error } = await checkOtp(mobile, code);
+    const { response } = await checkOtp(mobile, code);
 
     // save token in cookie
     cookie(response?.data);
+    refetch();
+    navigate("/");
 
     if (response?.status == 200) {
       toast.success(MESSEGESENDOTP.WELLCOME);

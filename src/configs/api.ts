@@ -1,5 +1,8 @@
 import axios from "axios";
 
+// function get token is cookies
+import { getCookie } from "../utils/cookies";
+
 const BASE_URL: string = "http://localhost:3400";
 
 const api = axios.create({
@@ -8,5 +11,19 @@ const api = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+api.interceptors.request.use(
+  (request) => {
+    const accessToken = getCookie("accessToken");
+
+    if (accessToken) {
+      request.headers["Authorization"] = `bearer ${accessToken}`;
+    }
+    return request;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export { api };
