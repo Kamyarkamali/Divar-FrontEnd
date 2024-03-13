@@ -7,4 +7,12 @@ interface IsentOtp {
   setMobile: Dispatch<SetStateAction<string>>;
 }
 
-export type { IsentOtp };
+interface IcheckOtp {
+  code: Dispatch<SetStateAction<string>>;
+  setCode: Dispatch<SetStateAction<string>>;
+  mobile: Dispatch<SetStateAction<string>>;
+  setMobile: Dispatch<SetStateAction<string>>;
+  setStep: Dispatch<SetStateAction<number>>;
+}
+
+export type { IsentOtp, IcheckOtp };
