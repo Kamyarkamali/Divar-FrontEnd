@@ -19,4 +19,14 @@ interface Ichildren {
   children: JSX.Element;
 }
 
-export type { IsentOtp, IcheckOtp, Ichildren };
+interface Datas {
+  datas: JSX.Element;
+}
+
+interface Isate {
+  name: string;
+  icon: string;
+  slug: string;
+}
+
+export type { IsentOtp, IcheckOtp, Ichildren, Isate, Datas };

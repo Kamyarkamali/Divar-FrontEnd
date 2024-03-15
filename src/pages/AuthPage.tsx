@@ -5,7 +5,7 @@ import SendOtp from "../components/templates/SendOtp";
 import CheckOtp from "../components/templates/CheckOtp";
 
 export default function AuthPage() {
-  const [step, setStep] = useState<number>(2);
+  const [step, setStep] = useState<number>(1);
 
   const [mobile, setMobile] = useState<string>("");
 
