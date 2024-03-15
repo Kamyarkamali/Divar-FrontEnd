@@ -33,9 +33,11 @@ function HomePage() {
             </p>
           </div>
           <div className="flex justify-center mt-9">
-            <button className="bg-blue-700 p-2 rounded-md text-white font-bold">
-              دانلود بک اند پروژه
-            </button>
+            <a href="https://github.com/Kamyarkamali/Divar-Backend">
+              <button className="bg-blue-700 p-2 rounded-md text-white font-bold">
+                دانلود بک اند پروژه
+              </button>
+            </a>
           </div>
           <div className="flex justify-center mt-9">
             <button
